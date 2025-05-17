@@ -1,5 +1,5 @@
-html{
-font-family: Arial, sans-serif;
+html {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -7,32 +7,32 @@ body {
   width: 100%;
 }
 
-main{
-    width: 1200px;
-    margin: 0 auto;
+main {
+  width: 1200px;
+  margin: 0 auto;
 }
 
-section{
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-flex-direction: column;
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
 }
-.title_wrap{
-    display: flex;
-    justify-content: center;
+.title_wrap {
+  display: flex;
+  justify-content: center;
 }
 
-h1{
-    font-size: 60px;
+h1 {
+  font-size: 60px;
 }
 
 .card_wrap img {
-  width: 20%;    
+  width: 20%;
   height: auto;
   display: block;
-  margin: 0 auto;  
+  margin: 0 auto;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 8px;
@@ -46,11 +46,11 @@ h1{
 }
 
 .quiz p {
-  font-size: 1.8rem; 
+  font-size: 1.8rem;
   margin: 0;
   padding: 0;
   line-height: 1.4;
-  font-weight: bold;         /* 少し強調（任意） */
+  font-weight: bold; /* 少し強調（任意） */
 }
 
 .question_word {
@@ -95,8 +95,8 @@ h1{
 
 .select_area li img {
   width: 100%;
-  height: 120px;         /* 高さを統一して揃える */
-  object-fit: contain;   /* 画像の縦横比を維持して収める */
+  height: 120px; /* 高さを統一して揃える */
+  object-fit: contain; /* 画像の縦横比を維持して収める */
   display: block;
   border-radius: 8px;
 }
@@ -106,3 +106,28 @@ h1{
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
 }
 
+#judge_message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 30px 60px;
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: none;
+  text-align: center;
+}
+
+#judge_message.correct {
+  color: #fb5089;
+  border: 5px solid #fb5089;
+}
+
+#judge_message.incorrect {
+  color: #555;
+  border: 5px solid #aaa;
+}
