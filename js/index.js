@@ -115,9 +115,7 @@ $(document).ready(function () {
 
   //判定-クリックイベント
   $(".select_area li").on("click", function () {
-    // 選ばれたkana_imgのaltを見つける
-    const selectedAlt = $(this).find("img").attr("alt");
-    const selectedKana = selectedAlt.charAt(0);
+    const selectedKana = $(this).text().trim().charAt(0);
     //.charAt() は character at（＝「〜番目の文字」）(0)１番目（1)２番目
     //console.log(seletedKana);
 
