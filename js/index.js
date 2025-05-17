@@ -10,5 +10,18 @@ $(document).ready(function () {
   //配列の中は[A, B, C]で囲む 文字列の場合["りんご", "いちご", "バナナ"]
   //それをさらにグループ化{ word:"____", kana:"____", img:"相対パスで場所を表示"}
   // console.log(cards);
-});
 
+  let correctKana = ""; //最初は見えないようにしておく
+
+  //問題のランダム処理
+  function setNewQuestion() {
+    const random = cards[Math.floor(Math.random() * cards.length)];
+    //console.log(random);
+    correctKana = random.kana;
+    //console.log(correctKana);
+  }
+
+
+  
+  setNewQuestion();
+});
