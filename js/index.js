@@ -56,7 +56,7 @@ $(document).ready(function () {
         });
     } else {
       $message
-        .text("もう一回！")
+        .text("もういっかい！")
         .removeClass("correct")
         .addClass("incorrect")
         .fadeIn(200, () => {
