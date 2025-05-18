@@ -62,10 +62,7 @@ $(document).ready(function () {
       { word: "えんぴつ", kana: "れ", img: "img/img_e/enpitsu.png" },
       { word: "おにぎり", kana: "ろ", img: "img/img_e/onigiri.png" },
     ],
-    wa: [
-      { word: "あさがお", kana: "わ", img: "img/img_e/asagao.png" },
-      { word: "いぬ", kana: "を", img: "img/img_e/inu.png" },
-    ],
+    wa: [{ word: "あさがお", kana: "わ", img: "img/img_e/asagao.png" }],
   };
   //配列の中は[A, B, C]で囲む 文字列の場合["りんご", "いちご", "バナナ"]
   //それをさらにグループ化{ word:"____", kana:"____", img:"相対パスで場所を表示"}
@@ -76,22 +73,39 @@ $(document).ready(function () {
   let cards = allCards["a"]; // 最初は「あ」行
 
   // メニューのトグル
- $(".menu_toggle").on("click", function () {
-  $(".menu").slideToggle(200); // 2秒で開閉
-});
+  $(".menu_toggle").on("click", function () {
+    $(".menu").slideToggle(200); // 2秒で開閉
+  });
 
   // メニュー項目のクリックで行切り替え
   $(".menu li").on("click", function () {
     const group = $(this).data("group");
+    currentGroup = group;
+    //console.log(group);
     if (group === "all") {
       cards = Object.values(allCards).flat(); // 全グループをまとめる
     } else {
-      cards = allCards[group];//そうではない時はそれぞれのグループでくくる
+      cards = allCards[group]; //そうではない時はそれぞれのグループでくくる
     }
     setNewQuestion();
     $(".menu").addClass("hidden");
     // menu クラスの要素に hidden クラスを付けたり外したり切り替える
   });
+
+  const kanaGroups = {
+    a: ["あ", "い", "う", "え", "お"],
+    ka: ["か", "き", "く", "け", "こ"],
+    sa: ["さ", "し", "す", "せ", "そ"],
+    ta: ["た", "ち", "つ", "て", "と"],
+    na: ["な", "に", "ぬ", "ね", "の"],
+    ha: ["は", "ひ", "ふ", "へ", "ほ"],
+    ma: ["ま", "み", "む", "め", "も"],
+    ya: ["や", "ゆ", "よ"],
+    ra: ["ら", "り", "る", "れ", "ろ"],
+    wa: ["わ", "を", "ん"],
+  };
+
+  let currentGroup = "a";
 
   //問題
   function setNewQuestion() {
@@ -111,19 +125,57 @@ $(document).ready(function () {
 
     //restOfWordの前に?をつけて.question_wordに表示
     $(".question_word").html(`<span class="hatena">？</span>${restOfWord}`);
+
+    // 選択肢を更新
+    let options = [];
+
+    if (currentGroup === "all") {
+      // ランダムモードのとき
+      const allKana = Object.values(kanaGroups).flat();
+      // kanaGroups からすべてのひらがな（あ〜を）をひとつの配列にまとめる
+
+      const others = allKana.filter((k) => k !== correctKana);
+      // 正解のかな（correctKana）を除いた文字だけ残す → 間違いの候補を作っている
+
+      const shuffled = others.sort(() => 0.5 - Math.random());
+      // シャッフルしてランダムな並びにする（sort でランダムソート）
+
+      options = [correctKana, ...shuffled.slice(0, 4)];
+      // 正解＋間違い4つ ＝ 合計5個の選択肢を作る
+
+      options = options.sort(() => 0.5 - Math.random());
+      // 選択肢をもう一度ランダムに並べ替える（正解が真ん中に来たりするように）
+    } else {
+      // 「あ行」や「か行」など固定の行が選ばれている場合
+      options = kanaGroups[currentGroup];
+      // 例: kanaGroups["ka"] → ["か", "き", "く", "け", "こ"]
+    }
+
+    renderKanaChoices(options);
+  }
+
+  // 文字を表示（liを生成）
+  function renderKanaChoices(kanaArray) {
+    const $ul = $(".select_choices");
+    $ul.empty();
+    kanaArray.forEach((kana) => {
+      const $li = $("<li>").addClass("box2_1").text(kana);
+      $ul.append($li);
+    });
   }
 
   //判定-クリックイベント
-  $(".select_area li").on("click", function () {
+  $(".select_area").on("click", ".box2_1", function () {
     const selectedKana = $(this).text().trim().charAt(0);
     //.charAt() は character at（＝「〜番目の文字」）(0)１番目（1)２番目
     //console.log(seletedKana);
 
     const $message = $("#judge_message");
+
     //judgement
     if (selectedKana === correctKana) {
       $message
-        .text("⭕️せいかい！")
+        .text("⭕️ せいかい！")
         .removeClass("incorrect")
         .addClass("correct")
         .fadeIn(200, () => {
