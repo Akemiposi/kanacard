@@ -10,8 +10,8 @@ $(document).ready(function () {
     ],
     ka: [
       { word: "あさがお", kana: "か", img: "img/img_e/asagao.png" },
-      { word: "いぬ", kana: "き", img: "img/img_e/inu.png" },
-      { word: "うさぎ", kana: "く", img: "img/img_e/usagi.png" },
+      { word: "きつね", kana: "き", img: "img/img_e/kitsune.png" },
+      { word: "くま", kana: "く", img: "img/img_e/kuma.png" },
       { word: "えんぴつ", kana: "け", img: "img/img_e/enpitsu.png" },
       { word: "おにぎり", kana: "こ", img: "img/img_e/onigiri.png" },
     ],
@@ -25,7 +25,7 @@ $(document).ready(function () {
     ta: [
       { word: "あさがお", kana: "た", img: "img/img_e/asagao.png" },
       { word: "いぬ", kana: "ち", img: "img/img_e/inu.png" },
-      { word: "うさぎ", kana: "つ", img: "img/img_e/usagi.png" },
+      { word: "つくえ", kana: "つ", img: "img/img_e/tsukue.png" },
       { word: "えんぴつ", kana: "て", img: "img/img_e/enpitsu.png" },
       { word: "おにぎり", kana: "と", img: "img/img_e/onigiri.png" },
     ],
