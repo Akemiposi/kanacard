@@ -40,7 +40,7 @@ $(document).ready(function () {
     { word: "はさみ", kana: "は", img: "img/img_e/hasami.png" },
     { word: "ひこうき", kana: "ひ", img: "img/img_e/hikouki.png" },
     { word: "ふうせん", kana: "ふ", img: "img/img_e/fuusen.png" },
-    { word: "へちま", kana: "へ", img: "img/img_e/hechima.png" },
+    { word: "へび", kana: "へ", img: "img/img_e/hebi.png" },
     { word: "ほし", kana: "ほ", img: "img/img_e/hoshi.png" }
   ],
   ma: [
