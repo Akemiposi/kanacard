@@ -66,7 +66,7 @@ $(document).ready(function () {
   };
   //配列の中は[A, B, C]で囲む 文字列の場合["りんご", "いちご", "バナナ"]
   //それをさらにグループ化{ word:"____", kana:"____", img:"相対パスで場所を表示"}
-  // console.log(cards);
+  // console.log(allCards);
 
   let correctKana = ""; //最初は見えないようにしておく
 
@@ -136,7 +136,7 @@ $(document).ready(function () {
     if (currentGroup === "all") {
       // ランダムモードのとき
       const allKana = Object.values(kanaGroups).flat();
-      // kanaGroups からすべてのひらがな（あ〜を）をひとつの配列にまとめる
+      // kanaGroups からすべてのひらがな（あ〜ん）をひとつの配列にまとめる
 
       const others = allKana.filter((k) => k !== correctKana);
       // 正解のかな（correctKana）を除いた文字だけ残す → 間違いの候補を作っている
@@ -145,7 +145,7 @@ $(document).ready(function () {
       // シャッフルしてランダムな並びにする（sort でランダムソート）
 
       options = [correctKana, ...shuffled.slice(0, 4)];
-      // 正解＋間違い4つ ＝ 合計5個の選択肢を作る
+      // 正解＋間違い4つのkana ＝ 合計5個の選択肢を作る
 
       options = options.sort(() => 0.5 - Math.random());
       // 選択肢をもう一度ランダムに並べ替える（正解が真ん中に来たりするように）
